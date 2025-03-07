@@ -1,0 +1,6 @@
+@RestApi_Uppgift_HostAddress = http://localhost:5208
+
+GET {{RestApi_Uppgift_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
