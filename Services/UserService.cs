@@ -3,6 +3,7 @@ using RestApi_Uppgift.Data;
 using RestApi_Uppgift.DTOs.ErfarenhetDTO;
 using RestApi_Uppgift.DTOs.PersonDTOs;
 using RestApi_Uppgift.DTOs.UtbildningDTO;
+using System.Linq.Expressions;
 
 namespace RestApi_Uppgift.Services
 {
@@ -17,16 +18,18 @@ namespace RestApi_Uppgift.Services
 
         public async Task<List<PersonDTO>> GetAllPersons()
         {
-            var personList = await context.person.Select(s => new PersonDTO
-            {
-                PersonID = s.PersonID,
-                PersonBeskrivning = s.Beskrivning,
-                PersonEpost = s.Epost,
-                PersonNamn = s.Namn
+                var personList = await context.person.Select(s => new PersonDTO
+                {
+                    PersonID = s.PersonID,
+                    PersonBeskrivning = s.Beskrivning,
+                    PersonEpost = s.Epost,
+                    PersonNamn = s.Namn
 
-            }).ToListAsync();
+                }).ToListAsync();
 
-            return personList;
+                return personList;
+            
+            
         }
 
         public async Task<List<ErfarenhetDTOs>> GetErfarenheter()

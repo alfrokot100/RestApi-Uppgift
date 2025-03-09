@@ -21,21 +21,27 @@ namespace RestApi_Uppgift.Endpoints.StudentEnpoints
             {
                 var personer = await userservice.GetAllPersons();
 
-                return personer;
+                if (personer == null) return Results.NotFound("Inga personer hittades");
+
+                return Results.Ok(personer);
             });
 
             app.MapGet("/erfarenheter", async (UserService userservice) => 
             {
                 var erfarenhet = await userservice.GetErfarenheter();
 
-                return erfarenhet;
+                if (erfarenhet == null) return Results.NotFound("Inga personer hittades");
+
+                return Results.Ok(erfarenhet);
             });
 
             app.MapGet("/utbildnings", async (UserService userservice) =>
             {
                 var utbildning = await userservice.GetUtbildning();
 
-                return utbildning;
+                if (utbildning == null) return Results.NotFound("Inga personer hittades");
+
+                return Results.Ok(utbildning);
             });
 
 //--------------------------------------------------------------------------------------------------
@@ -47,7 +53,7 @@ namespace RestApi_Uppgift.Endpoints.StudentEnpoints
 
                 if(person == null)
                 {
-                    return Results.NotFound("Personen hittas inte kompis!");
+                    return Results.NotFound("Personen hittas inte!");
                 }
                 return Results.Ok(person);
             });            
